@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@drizzle/store": "^1.5.1",
     "drizzle": "^1.4.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",

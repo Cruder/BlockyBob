@@ -1,21 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+  constructor(props) {
+    super(props);
+
+    this.state = { loading: true, drizzleState: null };
   }
+
+  render() {
+    if (this.state.loading) return "Loading Drizzle...";
+    return <div className="App">Drizzle is ready</div>;
+  }
+
+  componentDidMount() {
+    const { drizzle } = this.props;
+    console.log(drizzle);
+
+    // subscribe to changes in the store
+    this.unsubscribe = drizzle.store.subscribe(() => {
+
+      // every time the store updates, grab the state from drizzle
+      const drizzleState = drizzle.store.getState();
+
+      // check to see if it's ready, if so, update local component state
+      if (drizzleState.drizzleStatus.initialized) {
+        this.setState({ loading: false, drizzleState });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
 }
 
 export default App;
