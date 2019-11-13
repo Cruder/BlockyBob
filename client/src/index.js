@@ -8,6 +8,8 @@ import MainStore from "./contracts/Main.json";
 
 import './index.css';
 
+require('dotenv').config();
+
 // let drizzle know what contracts we want and how to access our test blockchain
 const options = {
   contracts: [MainStore],
