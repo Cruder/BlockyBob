@@ -4,7 +4,7 @@ import App from './App';
 
 // import drizzle functions and contract artifact
 import { Drizzle } from "@drizzle/store";
-import MainStore from "./contracts/Main.json";
+import VoteStore from "./contracts/Vote.json";
 
 import './index.css';
 
@@ -12,7 +12,7 @@ require('dotenv').config();
 
 // let drizzle know what contracts we want and how to access our test blockchain
 const options = {
-  contracts: [MainStore],
+  contracts: [VoteStore],
   web3: {
     fallback: {
       type: "ws",
