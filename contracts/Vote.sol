@@ -5,15 +5,20 @@ contract Vote {
         uint32[] candidates;
         address[] voters;
         mapping(address => uint32[]) votes;
+        bool isValue;
     }
 
     uint32[] electionList;
     mapping(uint32 => Election) elections;
 
     function createElection(uint32 number) public returns(bool) {
-        electionList.push(number);
-
-        return true;
+        if(elections[number].isValue == true) {
+            return false;
+        } else {
+            electionList.push(number);
+            elections[number].isValue = true;
+            return true;
+        }
     }
 
     function listElections() public view returns(uint32[] memory) {
