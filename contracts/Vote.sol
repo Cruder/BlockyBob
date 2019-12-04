@@ -12,7 +12,7 @@ contract Vote {
     mapping(uint32 => Election) elections;
 
     function createElection(uint32 number) public returns(bool) {
-        if(elections[number].isValue == true) {
+        if(elections[number].isValue) {
             return false;
         } else {
             electionList.push(number);
@@ -45,7 +45,7 @@ contract Vote {
 
     function getResult(uint32 electionId) public view returns(uint256) {
         Election storage election = elections[electionId];
-        uint256[] memory elusResults;
+        uint256[] memory elusResults = new uint256[](election.candidates.length);
 
         // elusResults[565465645] = 6;
 
@@ -63,16 +63,20 @@ contract Vote {
         uint equality_count = 0;
         uint256[] memory equals = new uint256[](election.candidates.length);
 
+
         for(uint i = 0; i < elusResults.length; ++i) {
             if(elusResults[i] > max) {
                 equality_count = 0;
                 max = elusResults[i];
                 equals = new uint256[](election.candidates.length);
+
+                equals[equality_count] = i;
             } else if(elusResults[i] == max) {
                 equality_count += 1;
+
+                equals[equality_count] = i;
             }
 
-            equals[equality_count] = i;
         }
 
         return elect(equals);

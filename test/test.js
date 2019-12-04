@@ -14,7 +14,7 @@ contract("Main", main => {
   )
 });
 
-contract("Vote", vote => 
+contract("Vote", vote =>
   {
     it("create election", () =>
       Vote.deployed()
@@ -37,12 +37,15 @@ contract("Vote", vote =>
     );
     it('vote election 0 with order 2143', async () => {
       let instance = await Vote.deployed()
-      await instance.setCandidates(0, [1,2,3,4])
-      await instance.userVote(0, [2,1,4,3])
+      console.log("Set Candidate")
+      await instance.setCandidates(0, [0,1,2,3])
+      console.log("Vote")
+      await instance.userVote(0, [2,1,0,3])
+      console.log("Result calculation")
       let result = await instance.getResult.call(0)
+      console.log("Finish")
       console.log(result)
-      let res = result.map( r => r.words[0])
-      assert.equal(res, 2, 'Should Equal')
+      assert.equal(result, 2, 'Should Equal')
       }
     );
   }
