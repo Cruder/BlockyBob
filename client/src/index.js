@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 
 // import drizzle functions and contract artifact
 import { Drizzle } from "@drizzle/store";
 import VoteStore from "./contracts/Vote.json";
 
 import './index.css';
+import Root from "./components/Root";
 
 require('dotenv').config();
 
@@ -24,4 +24,7 @@ const options = {
 // setup drizzle
 const drizzle = new Drizzle(options);
 
-ReactDOM.render(<App drizzle={drizzle} />, document.getElementById('root'));
+ReactDOM.render(
+    <Root drizzle={drizzle} />,
+    document.getElementById('root')
+);

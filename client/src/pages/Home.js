@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import CreateElectionButton from "./Elections/CreateElectionButton";
-import ElectionList from "./Elections/ElectionList";
-import './App.css';
+import CreateElectionButton from "../Elections/CreateElectionButton";
+import ElectionList from "../Elections/ElectionList";
+import '../App.css';
 
-class App extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -49,4 +49,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default Home;
