@@ -47,8 +47,6 @@ contract Vote {
         Election storage election = elections[electionId];
         uint256[] memory elusResults = new uint256[](election.candidates.length);
 
-        // elusResults[565465645] = 6;
-
         for(uint i = 0; i < election.voters.length; ++i) {
             uint32[] storage vote = election.votes[election.voters[i]];
             for(uint j = 0; j < vote.length; ++j) {
@@ -63,7 +61,6 @@ contract Vote {
         uint equality_count = 0;
         uint256[] memory equals = new uint256[](election.candidates.length);
 
-
         for(uint i = 0; i < elusResults.length; ++i) {
             if(elusResults[i] > max) {
                 equality_count = 0;
@@ -76,7 +73,6 @@ contract Vote {
 
                 equals[equality_count] = i;
             }
-
         }
 
         return elect(equals);
