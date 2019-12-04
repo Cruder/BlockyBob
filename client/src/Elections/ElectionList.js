@@ -1,4 +1,5 @@
 import React from "react";
+import ElectionCard from "./ElectionCard";
 
 class ElectionList extends React.Component {
   constructor(props) {
@@ -21,7 +22,13 @@ class ElectionList extends React.Component {
 
     let electionList = Vote.listElections[this.state.dataKey];
     if (electionList) {
-      electionList.value.forEach(election => console.log(election));
+      return(
+        <div>
+          {electionList.value.map((election, i) => {
+            return (<ElectionCard key={i} election={election} />)
+          })}
+        </div>
+      );
     }
 
     return "Elections";
