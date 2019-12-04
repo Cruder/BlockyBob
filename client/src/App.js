@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ReadString from "./ReadString";
+import CreateElectionButton from "./Elections/CreateElectionButton";
+import ElectionList from "./Elections/ElectionList";
 import './App.css';
 
 class App extends Component {
@@ -10,10 +11,15 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.loading) return "Loading Drizzle...";
+    if (this.state.loading) return "";
     return (
       <div className="App">
-        <ReadString
+        <ElectionList
+          drizzle={this.props.drizzle}
+          drizzleState={this.state.drizzleState}
+          />
+
+        <CreateElectionButton
           drizzle={this.props.drizzle}
           drizzleState={this.state.drizzleState}
         />
