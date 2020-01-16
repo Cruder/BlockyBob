@@ -25,6 +25,6 @@ const options = {
 const drizzle = new Drizzle(options);
 
 ReactDOM.render(
-    <Root drizzle={drizzle} />,
+    <Root store={drizzle} />,
     document.getElementById('root')
 );
