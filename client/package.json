@@ -7,7 +7,9 @@
     "drizzle": "^1.4.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "0.9.x"
+    "react-scripts": "0.9.x",
+    "prop-types": "^15.7.2",
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "dotenv": "^8.2.0"
