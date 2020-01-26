@@ -2,7 +2,6 @@ import * as React from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import App from "./App";
 import Home from "../Pages/Home";
-import Home2 from "../Pages/Home2";
 import Election from "../Pages/Election";
 import { LoadingContainer } from "@drizzle/react-components";
 import Provider from "./Provider";
@@ -22,7 +21,6 @@ const Root = (props, context) => {
                             render={Election}
                             render={({match, history}) => <Election match={match} history={history} />}
                         />
-                        <Route exact path="/dudu" component={Home2} />
                     </App>
                 </Router>
             </LoadingContainer>

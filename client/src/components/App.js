@@ -9,7 +9,7 @@ class App extends React.Component {
     render(){
         return (
             <React.Fragment>
-                <div><Link to={'/'}>Home</Link>[]<Link to={'/dudu'}>Dudu</Link></div>
+                <div><Link to={'/'}>Home</Link></div>
                 <div className={"grid-container"}>
                         {this.props.children}
                 </div>
