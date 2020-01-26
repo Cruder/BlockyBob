@@ -14,13 +14,15 @@ class Home extends Component{
     render() {
         return (
             <div className="App">
+                <br/>
+                <CreateElectionButton
+                    accounts={this.props.accounts}
+                />
+
                 <ElectionList
                     accounts={this.props.accounts}
                 />
 
-                <CreateElectionButton
-                    accounts={this.props.accounts}
-                />
             </div>
         );
     }

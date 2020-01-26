@@ -17,9 +17,7 @@ const Root = (props, context) => {
                 <Router>
                     <App>
                         <Route exact path="/" component={Home}/>
-                        <Route exact path="/elections/:id"
-                            component={({match}) => <Election match={match} />}
-                        />
+                        <Route exact path="/elections/:id" component={Election}/>
                     </App>
                 </Router>
             </LoadingContainer>
