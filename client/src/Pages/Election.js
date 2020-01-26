@@ -1,10 +1,16 @@
 import React, {Component, Fragment} from 'react'
 import CandidateList from "../components/Candidate/CandidateList";
 import CreateCandidateButton from "../components/Candidate/CreateCandidateButton";
+import CloseElectionButton from "../components/Candidate/CloseElectionButton";
 import {drizzleConnect} from "@drizzle/react-plugin";
 import drizzle from "../store";
 
 class Election extends Component{
+    constructor(props, context){
+        super(props);
+        this.state = { isActive: null }
+    }
+
     render () {
         const id = this.props.match.params.id;
         return(
@@ -16,11 +22,7 @@ class Election extends Component{
                   state={this.props.Vote}
                   status={this.props.drizzleStatus}
               />
-
-              <CreateCandidateButton
-                  accounts={this.props.accounts}
-                  electionId={id}
-              />
+              {this._renderActions(id)}
             </div>
         );
     }
@@ -36,10 +38,41 @@ class Election extends Component{
             this.setState({drizzleState});
             console.log("sub state", drizzleState);
         });
+        console.log('drizzle', drizzle);
+        const Vote = drizzle.contracts.Vote;
+        const dataKey = Vote.methods.isElecttionActive.cacheCall(this.props.match.params.id);
+        console.log('dataKey', dataKey);
+        this.setState({ dataKey });
     }
 
     componentWillUnmount() {
         this.unsubscribe();
+    }
+
+    _renderActions(id) {
+        const {Vote} = drizzle.store.getState().contracts;
+        this.state.isActive = Vote.isElecttionActive[this.state.dataKey];
+        console.log('isActive', this.state.isActive);
+        if (this.state.isActive === undefined)
+            return '';
+
+        if (this.state.isActive.value) {
+            return(
+                <div>
+                      <CreateCandidateButton
+                          accounts={this.props.accounts}
+                          electionId={id}
+                      />
+
+                      <CloseElectionButton
+                          accounts={this.props.accounts}
+                          electionId={id}
+                      />
+                </div>
+            );
+        }
+
+        return 'result';
     }
 }
 

@@ -6,6 +6,7 @@ contract Vote {
         address[] voters;
         mapping(address => uint32[]) votes;
         bool isValue;
+        bool isActive;
     }
 
     uint32[] electionList;
@@ -17,6 +18,7 @@ contract Vote {
         } else {
             electionList.push(number);
             elections[number].isValue = true;
+            elections[number].isActive = true;
             return true;
         }
     }
@@ -34,7 +36,9 @@ contract Vote {
     }
 
     function pushCandidate(uint32 electionId, uint32 candidate) public {
-        elections[electionId].candidates.push(candidate);
+        if(elections[electionId].isActive) {
+            elections[electionId].candidates.push(candidate);
+        }
     }
 
     function userVote(uint32 electionId, uint32[] memory eluIds) public {
@@ -45,6 +49,14 @@ contract Vote {
 
     function elect(uint256[] memory candidates) private pure returns(uint256) {
         return candidates[0];
+    }
+
+    function isElecttionActive(uint32 electionId) public view returns(bool) {
+        return elections[electionId].isActive;
+    }
+
+    function closeElection(uint32 electionId) public {
+        elections[electionId].isActive = false;
     }
 
     function getResult(uint32 electionId) public view returns(uint256) {
