@@ -3,6 +3,8 @@ import CandidateList from "../components/Candidate/CandidateList";
 import CreateCandidateButton from "../components/Candidate/CreateCandidateButton";
 import {drizzleConnect} from "@drizzle/react-plugin";
 import drizzle from "../store";
+import CloseElectionButton from "../components/Candidate/CloseElectionButton";
+import Result from "../components/Candidate/Result";
 
 class Election extends Component{
     constructor(props, context){
