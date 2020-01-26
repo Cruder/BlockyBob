@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 
 class ElectionCard extends React.Component {
     render() {
@@ -6,7 +7,7 @@ class ElectionCard extends React.Component {
         const link = '/elections/' + id
         return(
             <p>
-                <a href={link}>{id}</a>
+                <Link to={link}>{id}</Link>
             </p>
         );
     }
