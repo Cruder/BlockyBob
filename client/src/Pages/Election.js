@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import ElectionList from "../components/ElectionList";
-import CreateElectionButton from "../components/CreateElectionButton";
+import CandidateList from "../components/Candidate/CandidateList";
 import {drizzleConnect} from "@drizzle/react-plugin";
 
 
@@ -8,8 +7,14 @@ class Election extends Component{
     render () {
         const id = this.props.match.params.id;
         return(
-            <div>
+            <div className="App">
               <h1>Election {id}</h1>
+              <CandidateList
+                  electionId={id}
+                  accounts={this.props.accounts}
+                  state={this.props.Vote}
+                  status={this.props.drizzleStatus}
+              />
             </div>
         );
     }
