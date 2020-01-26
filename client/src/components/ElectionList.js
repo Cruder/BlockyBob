@@ -9,11 +9,9 @@ class ElectionList extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.status.initialized) {
             const Vote = drizzle.contracts.Vote;
             const dataKey = Vote.methods.listElections.cacheCall();
             this.setState({ dataKey });
-        }
     }
 
     render() {
