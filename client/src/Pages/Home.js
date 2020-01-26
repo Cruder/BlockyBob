@@ -26,8 +26,6 @@ class Home extends Component{
     }
 
     componentDidMount() {
-
-
         // subscribe to changes in the store
         this.unsubscribe = drizzle.store.subscribe(() => {
 
@@ -35,16 +33,14 @@ class Home extends Component{
             const drizzleState = drizzle.store.getState();
 
             // check to see if it's ready, if so, update local component state
-
-                this.setState({drizzleState});
-console.log("sub state", drizzleState);
+            this.setState({drizzleState});
+            console.log("sub state", drizzleState);
         });
     }
 
     componentWillUnmount() {
         this.unsubscribe();
     }
-
 }
 
 

@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import CandidateList from "../components/Candidate/CandidateList";
 import {drizzleConnect} from "@drizzle/react-plugin";
-
+import drizzle from "../store";
 
 class Election extends Component{
     render () {
@@ -17,6 +17,23 @@ class Election extends Component{
               />
             </div>
         );
+    }
+
+    componentDidMount() {
+        // subscribe to changes in the store
+        this.unsubscribe = drizzle.store.subscribe(() => {
+
+            // every time the store updates, grab the state from drizzle
+            const drizzleState = drizzle.store.getState();
+
+            // check to see if it's ready, if so, update local component state
+            this.setState({drizzleState});
+            console.log("sub state", drizzleState);
+        });
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 }
 
