@@ -15,8 +15,8 @@ class ElectionList extends React.Component {
     }
 
     render() {
-        const Vote = drizzle.contracts.Vote;
-        const electionList = Vote.methods.listElections[this.state.dataKey];
+        const {Vote} = drizzle.store.getState().contracts;
+        const electionList = Vote.listElections[this.state.dataKey];
 
         return(
             <div>
