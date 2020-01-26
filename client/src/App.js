@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CreateElectionButton from "./Elections/CreateElectionButton";
-import ElectionList from "./Elections/ElectionList";
+import CreateElectionButton from "./components/CreateElectionButton";
+import ElectionList from "./components/ElectionList";
 import './App.css';
 
 class App extends Component {

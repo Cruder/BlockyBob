@@ -7,6 +7,9 @@ class CreateElectionButton extends React.Component {
     this.createElection = this.createElection.bind(this);
   }
 
+  componentWillReceiveProps(nextProps, nextContext) {
+  }
+
   createElection() {
     const { drizzle, drizzleState } = this.props;
     const contract = drizzle.contracts.Vote;
