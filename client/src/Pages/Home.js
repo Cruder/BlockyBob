@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react'
 import ElectionList from "../components/ElectionList";
 import CreateElectionButton from "../components/CreateElectionButton";
 import {drizzleConnect} from "@drizzle/react-plugin";
-
+import drizzle from "../store";
 
 class Home extends Component{
     constructor(props, context){
@@ -16,18 +16,33 @@ class Home extends Component{
             <div className="App">
                 <ElectionList
                     accounts={this.props.accounts}
-                    // contract={this.props.drizzle.contracts.Vote}
-                    state={this.props.Vote}
-                    status={this.props.drizzleStatus}
                 />
 
                 <CreateElectionButton
                     accounts={this.props.accounts}
-                    // contract={this.props.drizzle.contracts.Vote}
-                    status={this.props.drizzleStatus}
                 />
             </div>
         );
+    }
+
+    componentDidMount() {
+
+
+        // subscribe to changes in the store
+        this.unsubscribe = drizzle.store.subscribe(() => {
+
+            // every time the store updates, grab the state from drizzle
+            const drizzleState = drizzle.store.getState();
+
+            // check to see if it's ready, if so, update local component state
+
+                this.setState({drizzleState});
+console.log("sub state", drizzleState);
+        });
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 
 }

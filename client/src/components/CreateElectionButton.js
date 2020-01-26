@@ -1,5 +1,5 @@
 import React from "react";
-import {ContractForm} from "@drizzle/react-components";
+import drizzle from "../store";
 
 class CreateElectionButton extends React.Component {
   constructor(props) {
@@ -10,19 +10,20 @@ class CreateElectionButton extends React.Component {
 
   createElection() {
     console.log("create elec", this.props);
-    const { contract, status, accounts } = this.props;
+    const { status, accounts } = this.props;
+    const contract = drizzle.contracts.Vote;
 
-    if (status.initialized) {
-      const stackId = contract.methods.createElection.cacheSend(Date.now(), {
-        from: this.props.accounts[0]
-      });
+    const stackId = contract.methods.createElection.cacheSend(Date.now(), {
+      from: this.props.accounts[0]
+    });
 
-      this.setState({ stackId });
-    }
+    this.setState({ stackId });
+console.log("create end", stackId);
+
   }
 
   render() {
-    return <p>create elections</p>;
+    return <button onClick={this.createElection}>New Elections</button>
 
   }
 }
