@@ -33,6 +33,10 @@ contract Vote {
         elections[electionId].candidates = candidates;
     }
 
+    function pushCandidate(uint32 electionId, uint32 candidate) public {
+        elections[electionId].candidates.push(candidate);
+    }
+
     function userVote(uint32 electionId, uint32[] memory eluIds) public {
         // require only one sender on voters
         elections[electionId].voters.push(msg.sender);

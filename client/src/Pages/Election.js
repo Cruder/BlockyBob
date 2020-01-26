@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import CandidateList from "../components/Candidate/CandidateList";
+import CreateCandidateButton from "../components/Candidate/CreateCandidateButton";
 import {drizzleConnect} from "@drizzle/react-plugin";
 import drizzle from "../store";
 
@@ -14,6 +15,11 @@ class Election extends Component{
                   accounts={this.props.accounts}
                   state={this.props.Vote}
                   status={this.props.drizzleStatus}
+              />
+
+              <CreateCandidateButton
+                  accounts={this.props.accounts}
+                  electionId={id}
               />
             </div>
         );
