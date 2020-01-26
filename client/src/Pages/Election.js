@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react'
 import CandidateList from "../components/Candidate/CandidateList";
 import CreateCandidateButton from "../components/Candidate/CreateCandidateButton";
 import CloseElectionButton from "../components/Candidate/CloseElectionButton";
+import Result from "../components/Candidate/Result";
 import {drizzleConnect} from "@drizzle/react-plugin";
 import drizzle from "../store";
 
@@ -72,7 +73,9 @@ class Election extends Component{
             );
         }
 
-        return 'result';
+        return(
+            <Result electionId={id} />
+        );
     }
 }
 
