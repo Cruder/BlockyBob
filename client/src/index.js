@@ -3,10 +3,6 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 import Root from "./components/Root";
-import {DrizzleProvider, DrizzleContext} from "@drizzle/react-plugin";
-import drizzle, {options} from "./store";
-import {LoadingContainer} from "@drizzle/react-components";
-import Provider from "./components/Provider";
 
 require('dotenv').config();
 
@@ -18,7 +14,5 @@ require('dotenv').config();
 
 // ReactDOM.render(<App drizzle={drizzle} />, document.getElementById('root'));
 ReactDOM.render(
-    <Provider options={options}>
         <Root/>
-    </Provider>
     , document.getElementById('root'));

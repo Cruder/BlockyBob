@@ -1,4 +1,5 @@
 import React from "react";
+import {ContractForm} from "@drizzle/react-components";
 
 class CreateElectionButton extends React.Component {
   constructor(props) {
@@ -7,16 +8,13 @@ class CreateElectionButton extends React.Component {
     this.createElection = this.createElection.bind(this);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-  }
-
   createElection() {
-    const { drizzle, drizzleState } = this.props;
-    const contract = drizzle.contracts.Vote;
+    console.log("create elec", this.props);
+    const { contract, status, accounts } = this.props;
 
-    if (drizzle.store.getState().drizzleStatus.initialized) {
+    if (status.initialized) {
       const stackId = contract.methods.createElection.cacheSend(Date.now(), {
-        from: drizzleState.accounts[0]
+        from: this.props.accounts[0]
       });
 
       this.setState({ stackId });
@@ -24,7 +22,8 @@ class CreateElectionButton extends React.Component {
   }
 
   render() {
-    return <button onClick={this.createElection}>New election</button>;
+    return <p>create elections</p>;
+
   }
 }
 
