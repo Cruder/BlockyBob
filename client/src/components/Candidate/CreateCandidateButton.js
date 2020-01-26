@@ -14,7 +14,7 @@ class CreateCandidateButton extends React.Component {
     const contract = drizzle.contracts.Vote;
     const electionId = this.props.electionId;
 
-    const stackId = contract.methods.pushCandidate.cacheSend(Date.now(), electionId, {
+    const stackId = contract.methods.pushCandidate.cacheSend(electionId, Date.now(), {
       from: this.props.accounts[0]
     });
 

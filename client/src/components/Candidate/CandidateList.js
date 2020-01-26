@@ -27,7 +27,7 @@ class ElectionList extends React.Component {
     }
 
     _renderCandidatesList(candidatesList) {
-        console.log(candidatesList);
+        console.log('candidate', candidatesList);
         if (candidatesList) {
             return(
                 <div>
