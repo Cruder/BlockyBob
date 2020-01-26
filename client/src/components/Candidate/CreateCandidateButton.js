@@ -6,6 +6,7 @@ class CreateCandidateButton extends React.Component {
     super(props);
     this.state = { stackId: null };
     this.createCandidate = this.createCandidate.bind(this);
+    this.selectCandidate = this.selectCandidate.bind(this);
   }
 
   createCandidate() {
@@ -23,8 +24,22 @@ class CreateCandidateButton extends React.Component {
 
   }
 
+  selectCandidate(event){
+    console.log("select",event.target.value);
+    this.setState({candidate: event.target.value})
+  }
+
   render() {
-    return <button onClick={this.createCandidate}>Ajouter un candidat</button>
+
+    return <div>
+      {/*<select onChange={this.selectCandidate} >*/}
+      {/*  <option value="">--Please choose a candidate--</option>*/}
+      {/*  {Object.values(this.props.accounts).map(account => (*/}
+      {/*      <option value={account}>{account}</option>*/}
+      {/*  ))}*/}
+      {/*</select>*/}
+      <button onClick={this.createCandidate}>Ajouter un candidat</button>
+    </div>
 
   }
 }

@@ -1,15 +1,19 @@
 import React, {Component, Fragment} from 'react'
 import CandidateList from "../components/Candidate/CandidateList";
 import CreateCandidateButton from "../components/Candidate/CreateCandidateButton";
-import CloseElectionButton from "../components/Candidate/CloseElectionButton";
-import Result from "../components/Candidate/Result";
 import {drizzleConnect} from "@drizzle/react-plugin";
 import drizzle from "../store";
 
 class Election extends Component{
     constructor(props, context){
         super(props);
-        this.state = { isActive: null }
+        this.state = { isActive: null, elector: null};
+        this.selectElector = this.selectElector.bind(this)
+    }
+
+    selectElector(event){
+        if(event.target.value !== "")
+            this.setState({elector: event.target.value})
     }
 
     render () {
@@ -17,13 +21,25 @@ class Election extends Component{
         return(
             <div className="App">
               <h1>Election {id}</h1>
-              <CandidateList
-                  electionId={id}
-                  accounts={this.props.accounts}
-                  state={this.props.Vote}
-                  status={this.props.drizzleStatus}
-              />
-              {this._renderActions(id)}
+
+                <p>I am
+                    <select onChange={this.selectElector}>
+                        <option value="">-- Choose an elector --</option>
+                          {Object.values(this.props.accounts).map((account, i) => (
+                              <option value={account} key={i}>{account}</option>
+                          ))}
+                    </select>
+                </p>
+
+                <CandidateList
+                    electionId={id}
+                    accounts={this.props.accounts}
+                    state={this.props.Vote}
+                    status={this.props.drizzleStatus}
+                    elector={this.state.elector}
+                />
+                {this._renderActions(id)}
+
             </div>
         );
     }
